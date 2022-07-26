@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      html {
+        font-size: 10px;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 4rem;
+      }
+
+      #container {
+        max-width: 80rem;
+        margin: 0 auto;
+      }
+      .item {
+        width: 20rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>welcome</h1>
+    <div id="container"></div>
+    <script src="./node_modules/jsbarcode/dist/JsBarcode.all.min.js"></script>
+    <script>
+      const container = document.getElementById("container");
+
+      Array(100)
+        .fill(0)
+        .map((_, i) => {
+          const item = document.createElement("img");
+          item.setAttribute("id", `item${i}`);
+          item.classList.add("item");
+          container.appendChild(item);
+          JsBarcode(
+            `#item${i}`,
+            "82" + `${Math.floor(Math.random(i) * 10000000)}`.padStart(8, "0")
+          );
+        });
+    </script>
+  </body>
+</html>
